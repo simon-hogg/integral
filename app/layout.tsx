@@ -1,10 +1,9 @@
-import "./globals.css";
+import Nav from "@/components/layout/nav";
 import { Analytics } from "@vercel/analytics/react";
 import cx from "classnames";
-import { sfPro, inter } from "./fonts";
-import Nav from "@/components/layout/nav";
-import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
+import { inter, sfPro } from "./fonts";
+import "./globals.css";
 
 export const metadata = {
   title: "Precedent - Building blocks for your Next.js project",
@@ -27,17 +26,20 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={cx(sfPro.variable, inter.variable)}>
-        <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
-        <Suspense fallback="...">
-          {/* @ts-expect-error Server Component */}
-          <Nav />
-        </Suspense>
-        <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+    <html lang="en" className="h-full">
+      <body className={cx(sfPro.variable, inter.variable, "h-full")}>
+        <div className="flex flex-row items-stretch w-full h-full m-h-full overflow-hidden">
+        <div className="flex flex-col relative h-full border border-r-slate-100">
+          <Suspense fallback="...">
+            {/* @ts-expect-error Server Component */}
+            <Nav />
+          </Suspense>
+        </div>
+        <div className="flex flex-col grow shrink basis-0 min-w-0"></div>
+        <main className="flex flex-col relative overflow-auto place-items-stretch">
           {children}
         </main>
-        <Footer />
+        </div>
         <Analytics />
       </body>
     </html>
