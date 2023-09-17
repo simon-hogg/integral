@@ -29,16 +29,17 @@ export default async function RootLayout({
     <html lang="en" className="h-full">
       <body className={cx(sfPro.variable, inter.variable, "h-full")}>
         <div className="flex flex-row items-stretch w-full h-full m-h-full overflow-hidden">
-        <div className="flex flex-col relative h-full border border-r-slate-100">
-          <Suspense fallback="...">
-            {/* @ts-expect-error Server Component */}
-            <Nav />
-          </Suspense>
-        </div>
-        <div className="flex flex-col grow shrink basis-0 min-w-0"></div>
-        <main className="flex flex-col relative overflow-auto place-items-stretch">
-          {children}
-        </main>
+          <div className="flex flex-col relative h-full border border-r-slate-100">
+            <Suspense fallback="...">
+              {/* @ts-expect-error Server Component */}
+              <Nav />
+            </Suspense>
+          </div>
+          <div className="flex flex-col grow shrink basis-0 min-w-0">
+            <main className="flex flex-col relative overflow-auto place-items-stretch">
+              {children}
+            </main>
+          </div>
         </div>
         <Analytics />
       </body>
